@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AxiGroep_5.Models.ArtikelViewModel>
+
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-lg-9">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" withd="120"></th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                            </tr>
+                        </thead>  
+                        <tbody>
+                            @foreach(var item in Model)
+                             {
+                            <tr>
+                                <td>
+                                    <figcaption class="info">
+                                        <a href="#" class="title text-dark" data-abc="true">@item.Artikelnaam</a>
+                                        <p class="text-muted small">@item.Beschrijving</p>
+                                    </figcaption>
+                                </td>
+                                <td>
+                                    @item.Aantal
+                                </td>
+                                <td>
+                                    @Html.ActionLink("⌃", "VerhoogArtikelAantal", new { Artikel = item.Artikelnaam })
+                                    <p> @Html.ActionLink("⌄", "VerLaagArtikelAantal", new { Artikel = item.Artikelnaam })</p>
+                                </td>
+
+                                <td>
+                                    <div class="price-wrap"> <var class="price">€@item.TotaalPrijs </var> <small class="text-muted">€@item.Prijs per stuk </small> </div>
+                                </td>
+
+                            </tr>
+                             }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="dlist-align">
+                        <dt>Total price:</dt>
+                        <dd class="text-right ml-3">€@ViewBag.ArtikelTotaal</dd>
+                    </dl>
+                    <hr> <a asp-action="BestelWinkelmandje" asp-controller="Klant" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a asp-action="index" asp-controller="Klant" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

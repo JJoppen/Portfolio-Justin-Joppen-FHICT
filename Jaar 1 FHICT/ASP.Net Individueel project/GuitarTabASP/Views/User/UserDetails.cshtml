@@ -1,0 +1,75 @@
+﻿@model GuitarTabASP.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+<h1>Voeg rating toe.</h1>
+
+<form method="post" asp-action="AddOrUpdateUserRating" asp-controller="User">
+
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="hidden" value="@Model.userID" name="targetUserID"/>
+    <div class="form-group">
+        <input type="submit" value="go" class="btn btn-primary" />
+    </div>
+</form>
+<h1>Gebruikers gegevens</h1>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gebruikersnaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gebruikersnaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.rating.rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.rating.rating)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Beschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.nummers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    <a asp-action="AllUsers">Back to List</a>
+</div>

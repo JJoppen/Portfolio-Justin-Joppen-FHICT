@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AxiGroep_5.Models.ManagementViewModel>
+<h1>Management</h1>
+<p>
+    <a asp-action="Index"></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriorityLevel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @if (item.PriorityLevel < Convert.ToInt32(Html.ViewContext.HttpContext.Session.GetString("PriorityLevel")))
+             {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>              
+             }
+                else
+                {
+                   <td>
+                   </td>
+
+                }
+            <td>
+                @Html.DisplayFor(modelItem => item.PriorityLevel)
+            </td>
+            <td>
+                @if (item.PriorityLevel < Convert.ToInt32(Html.ViewContext.HttpContext.Session.GetString("PriorityLevel")))
+                {
+                    @Html.ActionLink("Wijzigen |", "Wijzigen", "Management", new { id = item.id, email = item.Email, password = item.Password, prioritylevel = item.PriorityLevel })
+                    @Html.ActionLink("Verwijderen", "Verwijderen", "Management", new { id = item.id, email = item.Email, password = item.Password, prioritylevel = item.PriorityLevel }, new { onclick = "return confirm('Weet je zeker dat je de gebruiker wilt verwijderen?');" })
+                }
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

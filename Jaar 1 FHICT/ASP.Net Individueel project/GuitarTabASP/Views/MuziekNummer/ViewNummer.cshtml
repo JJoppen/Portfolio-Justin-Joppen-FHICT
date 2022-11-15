@@ -1,0 +1,126 @@
+﻿@model GuitarTabASP.Models.MuziekNummerDetailsMetReacties
+
+
+@{
+    ViewData["Title"] = "ViewNummer";
+}
+
+<h1>Voeg rating toe.</h1>
+
+<form method="post" asp-action="AddOrUpdateNummerRating" asp-controller="MuziekNummer">
+
+    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="hidden" value="@Model.muziekNummerViewModel.NummerID" name="TargetNummerID" />
+    <div class="form-group">
+        <input type="submit" value="go" class="btn btn-primary" />
+    </div>
+</form>
+<h1>Nummer weegave</h1>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.muziekNummerViewModel.Naam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.muziekNummerViewModel.Naam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.muziekNummerViewModel.Tab)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.muziekNummerViewModel.Tab)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.muziekNummerViewModel.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.muziekNummerViewModel.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.muziekNummerViewModel.Beschrijving)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.muziekNummerViewModel.Beschrijving)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.muziekNummerViewModel.rating.rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.muziekNummerViewModel.rating.rating)
+        </dd>
+
+    </dl>
+</div>
+@if (Model.muziekNummerViewModel.youtubeUrl != null)
+{
+    <iframe width="420" height="315"
+        src="@Model.muziekNummerViewModel.youtubeUrl">
+    </iframe>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.reactieViewModels[1].UserViewmodel.Gebruikersnaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reactieViewModels[1].Comment)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.reactieViewModels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserViewmodel.Gebruikersnaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                @if (Html.ViewContext.HttpContext.Session.GetInt32("UserID") == item.UserViewmodel.userID)
+                {
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteComment", "Reactie", new { id = item.ReactieID, nummerid = item.NummerID })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Html.ViewContext.HttpContext.Session.GetInt32("UserID") != null)
+{
+    if (Html.ViewContext.HttpContext.Session.GetInt32("UserID") == Model.muziekNummerViewModel.userid)
+    {
+        <div>
+            @Html.ActionLink("Edit", "EditNummer", new { /* id = Model.PrimaryKey */id = Model.muziekNummerViewModel.NummerID }) |
+            @Html.ActionLink("Reactie Toevoegen", "MaakComment", "Reactie", new { id = Model.muziekNummerViewModel.NummerID }) |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.ActionLink("Reactie Toevoegen", "MaakComment", "Reactie", new { id = Model.muziekNummerViewModel.NummerID }) |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+

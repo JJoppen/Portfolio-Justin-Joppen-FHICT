@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AxiGroep_5.Models.ArtikelViewModel>
+
+@{
+    ViewData["Title"] = "Artikelen";
+}
+
+<h1>Artikelen</h1>
+
+<p>
+    <a asp-action="ArtikelAanmaken">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Artikelnaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prijs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kleur)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artikelnaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kleur)
+            </td>
+
+            <td>
+                @Html.ActionLink("Aanpassen", "ArtikelAanpassen", new { /* id=item.PrimaryKey */ id = item.ArtikelID }) |
+                @Html.ActionLink("Details", "ArtikelDetails", new { /* id=item.PrimaryKey */id =item.ArtikelID }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

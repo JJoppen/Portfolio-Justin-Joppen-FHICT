@@ -1,0 +1,78 @@
+﻿@model AxiGroep_5.Models.ArtikelAanmakenViewModel
+
+@{
+    ViewData["Title"] = "ArtikelAanmaken";
+}
+
+<h1>Artikel Aanmaken</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="ArtikelAanmaken" asp-controller="Artikel">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Artikelnaam" class="control-label"></label>
+                <input asp-for="artikelViewModel.Artikelnaam" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Artikelnaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Aantal" class="control-label"></label>
+                <input asp-for="artikelViewModel.Aantal" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Aantal"Aantal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Artikelnummer" class="control-label"></label>
+                <input asp-for="artikelViewModel.Artikelnummer" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Artikelnummer" class="text-danger"></span>
+            </div>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="GroepID">
+                @foreach (ArtikelGroepViewModel artikelGroepViewModel in Model.artikelGroepViewModels)
+                {
+                    <option value="@artikelGroepViewModel.groepID">@artikelGroepViewModel.naam</option>
+                }
+            </select>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Prijs" class="control-label"></label>
+                <input asp-for="artikelViewModel.Prijs" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Prijs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Beschrijving" class="control-label"></label>
+                <input asp-for="artikelViewModel.Beschrijving" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.THT" class="control-label"></label>
+                <input asp-for="artikelViewModel.THT" class="form-control" />
+                <span asp-validation-for="artikelViewModel.THT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Afmeting" class="control-label"></label>
+                <input asp-for="artikelViewModel.Afmeting" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Afmeting" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Kleur" class="control-label"></label>
+                <input asp-for="artikelViewModel.Kleur" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Kleur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="artikelViewModel.Gewicht" class="control-label"></label>
+                <input asp-for="artikelViewModel.Gewicht" class="form-control" />
+                <span asp-validation-for="artikelViewModel.Gewicht" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

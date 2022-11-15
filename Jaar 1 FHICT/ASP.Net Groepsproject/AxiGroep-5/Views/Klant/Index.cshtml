@@ -1,0 +1,23 @@
+﻿@model IEnumerable<AxiGroep_5.Models.ArtikelViewModel>
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<h1>Artikelen</h1>
+
+    @foreach (var item in Model)
+     {
+        <div class="card-header">
+            <h3>
+                @Html.DisplayFor(modelItem => item.Artikelnaam)
+            </h3>
+            <div class="card-body">
+                @Html.DisplayFor(modelItem => item.Prijs)
+                @Html.DisplayFor(modelItem => item.Beschrijving)
+                <div>
+                    @Html.ActionLink("Toevoegen aan winkelmandje", "ToevoegenAanWinkelmandje", new { ArtikelNaam = item.Artikelnaam, Beschrijving = item.Beschrijving, Prijs = item.Prijs, id = item.ArtikelID})
+                </div>
+            </div>
+        </div>
+     }

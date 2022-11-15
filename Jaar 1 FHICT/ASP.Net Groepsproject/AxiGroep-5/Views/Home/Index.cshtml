@@ -1,0 +1,19 @@
+﻿@model AccountViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="d-flex justify-content-center h-100">
+    <div class="card">
+        <div class="card-header"> 
+            <h1>Login</h1>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Account" asp-action="Login">
+                <input type="text" class="dropdown-item" placeholder="Username" asp-for="Email">
+                <input type="Password" class="dropdown-item" placeholder="Password" asp-for="Password">
+                <input type="submit" id="submit" value="Login" />
+            </form>
+        </div>
+    </div>
+</div>
+

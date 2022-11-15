@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AxiGroep_5.Models.MagazijnViewModel>
+
+@{
+    ViewData["Title"] = "Magazijnen";
+}
+
+<h1>Magazijnen</h1>
+
+<p>
+    <a asp-action="Index"></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Straatnaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Huisnummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postcode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Straatnaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Huisnummer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postcode)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

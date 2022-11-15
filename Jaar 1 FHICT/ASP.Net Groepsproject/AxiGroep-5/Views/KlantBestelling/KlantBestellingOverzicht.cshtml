@@ -1,0 +1,39 @@
+﻿@model IEnumerable<AxiGroep_5.Models.KlantBestellingModel>
+
+@{
+    ViewData["Title"] = "Bestelling overzicht";
+}
+
+<h1>Overzicht</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BestellingID)
+            </th>
+            <th>
+                Aantal verschillende producten
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BestellingID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Artikelaantal)
+    </td>
+
+    <td>
+        @Html.ActionLink("Details", "KlantBestellingDetails", "KlantBestelling", new { bestellingid = item.BestellingID } )
+        @Html.ActionLink("| Afronden", "BestellingAfronden", "KlantBestelling", new { bestellingid = item.BestellingID}, new { onclick = "return confirm('Weet je zeker dat je de bestelling wilt afronden?');" })
+        @Html.ActionLink("| OrderPicker overzicht", "OrderPickenOverzicht",   new { bestellingid = item.BestellingID})
+    </td>
+</tr>
+    }
+
+</table>

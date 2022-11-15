@@ -1,0 +1,42 @@
+﻿@model GuitarTabASP.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<h4>Voer uw gegevens in.</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form form method="post" asp-action="Login" asp-controller="User">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Gebruikersnaam" class="control-label"></label>
+                <input asp-for="Gebruikersnaam" class="form-control" />
+                <span asp-validation-for="Gebruikersnaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="wachtwoord" class="control-label"></label>
+                <input asp-for="wachtwoord" type="password" class="form-control" />
+                <span asp-validation-for="wachtwoord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            @if (ViewBag.response == "Uw logingegevens zijn incorrect.")
+            {
+                <label>Response:</label><p class="text-danger"> @ViewBag.response</p>
+            }
+
+            else
+            {
+                <label>Response:</label> @ViewBag.response
+            }
+        </form>
+    </div>
+</div>
+
+

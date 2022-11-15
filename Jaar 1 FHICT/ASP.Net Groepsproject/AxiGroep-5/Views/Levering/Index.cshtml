@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AxiGroep_5.Models.ArtikelViewModel>
+
+@{
+    ViewData["Title"] = "Leveringen";
+}
+
+<h1>Leveringen</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Artikelnaam)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artikelnaam)
+            </td>
+            <td>
+                <a asp-action="ArtikelToevoegen" asp-route-id="@item.ArtikelID">toevoegen</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Levering
+            </th>
+            <th>
+                Aantal
+            </th>
+        </tr>
+    </thead>
+    @if (ViewBag.Levering != null)
+    {
+        <tbody>
+            @foreach (ArtikelViewModel artikel in (List<ArtikelViewModel>)ViewBag.Levering)
+            {
+                <tr>
+                    <td>
+                        @artikel.Artikelnaam
+                    </td>
+                    <td>
+                        <a asp-action="AantalAanpassenPagina" asp-route-id="@artikel.ArtikelID">@artikel.Aantal</a>
+                    </td>
+                    <td>
+                        <a asp-action="verwijderUitLevering" asp-route-id="@artikel.ArtikelID">Verwijderen</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<a asp-action="LeveringVerwerken" class="btn btn-primary" onclick="BevestingPopup()">Levering verwerken</a>
+
+
+<script>
+    function BevestingPopup(){
+        alert("Levering wordt verwerkt.");
+    }
+</script>

@@ -1,0 +1,60 @@
+﻿@model ManagementViewModel
+
+@{
+    ViewData["Title"] = "Wijzigen";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AccountWijzigen" asp-route-id="@Model.id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" id="PriorityLevelID" asp-for="PriorityLevel">
+                    @if (Model.PriorityLevel <= Convert.ToInt32(@Html.ViewContext.HttpContext.Session.GetString("PriorityLevel")))
+                    {
+                        <option value="1"> 1</option>
+                        <option value="2"> 2 </option>
+
+                        if (Convert.ToInt32(@Html.ViewContext.HttpContext.Session.GetString("PriorityLevel")) == 3)
+                        {
+                            <option data- value="3"> 3 </option>
+                        }
+                        if (Convert.ToInt32(@Html.ViewContext.HttpContext.Session.GetString("PriorityLevel")) == 4)
+                        {
+                            <option value="3"> 3 </option>
+                            <option value="4"> 4 </option>
+                        }
+                    }
+                    else
+                    {
+                        <label asp-for="PriorityLevel" class="control-label"></label>
+                        <input asp-for="PriorityLevel" class="form-control" />
+                        <span asp-validation-for="PriorityLevel" class="text-danger"></span>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

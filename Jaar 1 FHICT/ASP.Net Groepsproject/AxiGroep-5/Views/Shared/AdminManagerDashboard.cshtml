@@ -1,0 +1,119 @@
+﻿@model AxiGroep_5.Models.DataViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<head>
+    <style>
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 25px;
+        }
+
+        #myBar {
+            border-radius: 25px;
+            width: 10%;
+            height: 30px;
+            background-color: #7b42fa;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+
+            {
+                var elem = document.getElementById("myBar");
+                var width = 1;
+                var id = setInterval(frame, 20);
+                function frame() {
+                    if (width >= @Math.Round(Model.Percentage)) {
+                        clearInterval(id);
+                    }
+                    if (width >= 100)
+                    {
+                        clearInterval(id)
+                    }
+                    else
+                    {
+                        width++;
+                        elem.style.width = width + '%' ;
+                        elem.innerHTML = width * 1 + '%' ;
+                    }
+                }
+            }
+
+
+            var chart = new CanvasJS.Chart("pie", {
+                animationEnabled: true,
+                exportEnabled: false,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "Artikelen verkocht deze maand per product"
+                },
+                axisY: {
+                    includeZero: true
+                },
+                data: [{
+                    type: "pie", //change type to bar, line, area, pie, column etc
+                    //indexLabel: "{y}", //Shows y value on all Data Points
+                    indexLabelFontColor: "#5A5757",
+                    indexLabelFontSize: 16,
+                    indexLabelPlacement: "outside",
+                    dataPoints: [
+                      @foreach ( LogicaLaag.Data.Data data in Model.DataIEnum)
+                        {
+                          <text>{ y: @data.Aantal , label: "@data.Naam" },</text>
+                        }
+                    ]
+                }]
+            });
+
+            var chart2 = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "Artikelen verkocht deze maand per groep"
+                },
+                axisY: {
+                    title: "Aantal"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: [
+                      @foreach ( LogicaLaag.Data.Data data in Model.DataIEnum2)
+                        {
+                          <text>{ y: @data.Aantal , label: "@data.Naam" },</text>
+                        }
+                    ]
+                }]
+            });
+            chart.render();
+            chart2.render();
+        }</script>
+</head>
+<h1>@ViewData["Title"]</h1>
+<div class="card" style="border-style:none">
+    <div class="col-sm-7" style="position:absolute; right:20px; bottom:-120px">
+        <div id="pie"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
+</div>
+
+<div class="card" style="border-style:none">
+    <div class="col-sm-3 align-right" style="bottom:-120px">
+        <div id="chartContainer"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
+</div>
+
+
+<h4>Totale vulling magazijn in procent</h4>
+
+<div id="myProgress">
+    <div id="myBar" style="width: 1%;">1%</div>
+</div>
+

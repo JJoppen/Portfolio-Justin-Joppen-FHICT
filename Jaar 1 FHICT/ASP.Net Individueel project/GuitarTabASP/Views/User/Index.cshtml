@@ -1,0 +1,65 @@
+﻿@model GuitarTabASP.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Account gegevens.</h1>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gebruikersnaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gebruikersnaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.rating.rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.rating.rating)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Beschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nummers[1].Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.nummers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Wijzigen", "Update", new { /* id = Model.PrimaryKey */ }) 
+</div>

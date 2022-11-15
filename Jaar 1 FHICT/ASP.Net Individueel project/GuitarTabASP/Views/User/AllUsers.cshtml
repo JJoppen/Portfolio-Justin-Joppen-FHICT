@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GuitarTabASP.Models.UserViewModel>
+
+@{
+    ViewData["Title"] = "AllUsers";
+}
+
+<h1>Alle gebruikers</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Gebruikersnaam)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gebruikersnaam)
+            </td>
+            @if (Html.ViewContext.HttpContext.Session.GetInt32("UserID") != null)
+            {
+                @if (item.userID == Convert.ToInt32(Html.ViewContext.HttpContext.Session.GetInt32("UserID")))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Index", new { id = item.userID })
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "UserDetails", new { id = item.userID })
+                    </td>
+                }
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Details", "UserDetails", new { id = item.userID })
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

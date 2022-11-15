@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AxiGroep_5.Models.KlantBestellingModel>
+
+<h1>Oudste bestellingen</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BestellingID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artikelaantal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BestellingID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artikelaantal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DagTijd)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "KlantBestellingDetails", "KlantBestelling", new { bestellingid = item.BestellingID })
+                </td>
+
+            </tr>
+        }
+
+    
+
+</table>

@@ -1,0 +1,15 @@
+﻿@if (Html.ViewContext.HttpContext.Session.GetString("PriorityLevel") == null)
+{
+    Layout = "_HomeLayout";
+}
+else if(Html.ViewContext.HttpContext.Session.GetString("PriorityLevel") == "1") {
+    Layout = "_KlantLayout";
+}
+else if (Html.ViewContext.HttpContext.Session.GetString("PriorityLevel") == "2")
+{
+    Layout = "_MedewerkerLayout";
+}
+else if (Html.ViewContext.HttpContext.Session.GetString("PriorityLevel") == "3" || Html.ViewContext.HttpContext.Session.GetString("PriorityLevel") == "4")
+{
+    Layout = "_ManagerLayout";
+}

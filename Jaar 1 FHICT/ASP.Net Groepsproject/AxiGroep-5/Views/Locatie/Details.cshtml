@@ -1,0 +1,64 @@
+﻿@model AxiGroep_5.Models.LocatieViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Locatie details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LocatieId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LocatieId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MagazijnId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MagazijnId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RijNummer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RijNummer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NiveauId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NiveauId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlekId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlekId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtikelId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArtikelId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsBezet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsBezet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AantalInLocatie)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AantalInLocatie)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<AxiGroep_5.Models.KlantBestellingModel>
+
+@{
+    ViewData["Title"] = "Bestelling details";
+}
+
+<h1>Bestelling</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelNaam)
+            </th>
+            <th>
+                Orderpick aantal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artikelaantal)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Terug", "Index")

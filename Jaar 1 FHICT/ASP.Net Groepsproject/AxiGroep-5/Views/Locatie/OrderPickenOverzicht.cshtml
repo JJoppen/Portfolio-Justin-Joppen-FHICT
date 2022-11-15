@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AxiGroep_5.Models.LocatieViewModel>
+
+@{
+    ViewData["Title"] = "OrderPickenOverzicht";
+}
+
+<h1>OrderPickenOverzicht</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RijNummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NiveauId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlekId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtikelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AantalInLocatie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RijNummer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NiveauId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlekId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtikelId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AantalInLocatie)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

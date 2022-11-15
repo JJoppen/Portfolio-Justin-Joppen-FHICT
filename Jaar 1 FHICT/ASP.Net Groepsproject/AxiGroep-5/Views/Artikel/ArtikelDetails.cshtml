@@ -1,0 +1,79 @@
+﻿@model AxiGroep_5.Models.ArtikelViewModel
+
+
+@{
+    ViewData["Title"] = "ArtikelDetails";
+}
+
+<h1>Artikel Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Artikelnaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Artikelnaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aantal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aantal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Artikelnummer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Artikelnummer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArtikelGroepViewmodel.naam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArtikelGroepViewmodel.naam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Prijs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Prijs)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beschrijving)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beschrijving)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.THT)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.THT)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Afmeting)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Afmeting)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Kleur)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Kleur)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gewicht)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gewicht)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "ArtikelAanpassen", new { /* id = Model.PrimaryKey */id = Model.ArtikelID }) |
+    @Html.ActionLink("Bekijk Locatie", "LocatiesOpArtikel","Locatie", new { id = Model.ArtikelID }) | 
+    <a asp-action="Index">Back to List</a>
+</div>

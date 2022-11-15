@@ -1,0 +1,52 @@
+﻿@model GuitarTabASP.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Accountsgegevens wijzigen.</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Update" asp-controller="User">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Gebruikersnaam" class="control-label"></label>
+                <input asp-for="Gebruikersnaam" class="form-control" />
+                <span asp-validation-for="Gebruikersnaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="wachtwoord" class="control-label"></label>
+                <input asp-for="wachtwoord" class="form-control" />
+                <span asp-validation-for="wachtwoord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+
+            @if (ViewBag.response == "Gebruikersnaam bestaat al.")
+            {
+                <p class="text-danger"> @ViewBag.response</p>
+            }
+            else if (ViewBag.respons == "Email bestaat al.")
+            {
+                 <p class="text-danger"> @ViewBag.response</p>
+            }
+            else
+            {
+                  @ViewBag.response
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Account bekijken.</a>
+</div>
+
